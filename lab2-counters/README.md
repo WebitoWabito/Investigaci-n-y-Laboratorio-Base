@@ -20,12 +20,12 @@ lab2-counters/
 
 # Requisitos
 
-Python  3.8+ 
-p4c  cualquiera con v1model 
-BMv2 simple_switch  cualquiera
-Mininet  2.3+ 
-Scapy  2.4+ 
-iperf3  3.x 
+* Python  3.8+
+* p4c  cualquiera con v1model 
+* BMv2 simple_switch  cualquiera
+* Mininet  2.3+ 
+* Scapy  2.4+ 
+* iperf3  3.x 
 
 
 # Compilar el programa P4

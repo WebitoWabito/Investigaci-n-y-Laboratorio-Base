@@ -6,7 +6,7 @@ Este laboratorio implementa una red con tres routers P4 y cuatro hosts ubicados 
 
 # Estructura de archivos
 
-```text
+```
 lab1-router/
   router.p4              # Programa P4: parser Ethernet/IPv4, tabla LPM, TTL, MAC rewrite
   router.p4info.txtpb    # Generado por p4c: información de runtime del programa P4
@@ -22,11 +22,11 @@ lab1-router/
 
 # Requisitos
 
-Python 3.8+
-p4c con soporte para v1model
-BMv2 simple_switch
-Mininet 2.3+
-simple_switch_CLI
+* Python 3.8+
+* p4c con soporte para v1model
+* BMv2 simple_switch
+* Mininet 2.3+
+* simple_switch_CLI
 
 # Compilar el programa P4
 
@@ -76,7 +76,7 @@ Hosts configurados:
 
 Esquema lógico:
 
-```text
+```
     h1 -- s1 -- s2 -- h2
            \   /
             s3 -- h3
@@ -96,7 +96,7 @@ python3 controller.py
 
 El controlador instala las reglas LPM en los tres routers:
 
-```text
+```
 s1: 4 rutas LPM instaladas en thrift port 9090.
 s2: 4 rutas LPM instaladas en thrift port 9091.
 s3: 4 rutas LPM instaladas en thrift port 9092.
@@ -112,7 +112,7 @@ python3 controller.py --switch s3
 
 Opciones:
 
-```text
+```
 --switch all    Configura todos los routers. Es el valor por defecto.
 --switch s1     Configura solo el router s1.
 --switch s2     Configura solo el router s2.
@@ -123,7 +123,7 @@ Opciones:
 
 Una vez que la topología esté corriendo y el controlador haya instalado las reglas, se pueden ejecutar estas pruebas desde la consola de Mininet:
 
-```text
+```
 mininet> h1 ping -c 3 h2
 mininet> h1 ping -c 3 h3
 mininet> h1 ping -c 3 h4
@@ -135,7 +135,7 @@ Estas pruebas deben responder correctamente con `0% packet loss`.
 
 Para verificar el descarte por defecto cuando no existe una ruta LPM:
 
-```text
+```
 mininet> h3 ping -c 3 10.0.99.99
 ```
 
@@ -162,7 +162,7 @@ Este comando:
 
 Ejemplo de conectividad entre hosts:
 
-```text
+```
 mininet> h1 ping -c 3 h2
 PING 10.0.2.2 (10.0.2.2) 56(84) bytes of data.
 64 bytes from 10.0.2.2: icmp_seq=1 ttl=62 time=1.95 ms
@@ -177,7 +177,7 @@ El valor `ttl=62` indica que la respuesta pasó por dos routers P4. El host resp
 
 Ejemplo de hosts conectados al mismo router P4:
 
-```text
+```
 mininet> h3 ping -c 3 h4
 PING 10.0.4.4 (10.0.4.4) 56(84) bytes of data.
 64 bytes from 10.0.4.4: icmp_seq=1 ttl=63 time=0.945 ms
@@ -192,7 +192,7 @@ El valor `ttl=63` indica que el paquete pasó por un solo router P4, ya que `h3`
 
 Ejemplo de descarte por falta de ruta:
 
-```text
+```
 mininet> h3 ping -c 3 10.0.99.99
 PING 10.0.99.99 (10.0.99.99) 56(84) bytes of data.
 
